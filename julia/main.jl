@@ -29,39 +29,50 @@ function is_symmetric_and_positive_definite(A::SparseMatrixCSC{Float64, Int})
                 return result.time, result.bytes, rel_error
             else
                 println("La matrice è simmetrica ma non è definita positiva")
-                return null
+                return 0,0,0
             end
         
         
     else
         println("✘ La matrice NON è simmetrica.")
-        return null
+        return 0,0,0
     end
 end
 
 
 
 # 👉 Inserisci qui il percorso alla matrice .mtx
-file_path = "C:/Users/david/Desktop/Matrici/cfd2.mtx"
+directory_path = "C:/Users/david/Desktop/Matrici"
 
-A = load_matrix_from_mtx(file_path)
-t, mem, err = is_symmetric_and_positive_definite(A)
+#=
+#A = load_matrix_from_mtx(file_path)
+#t, mem, err = is_symmetric_and_positive_definite(A)
 
 println("Tempo: $(round(t*1000, digits=2)) ms")
 println("Memoria: $(mem ÷ 1024) KB")
 println("Errore relativo: $err")
 println("##################################")
+=#
 
 # Ottieni la lista di tutti i file .mtx nella directory
-#matrices_files = glob("*.mtx", directory_path)
+matrices_files = glob("*.mtx", directory_path)
 
 # Cicla su ogni file e processa
-#for file_path in matrices_files
- #   println("Processando matrice: $file_path")
-  #  A = load_matrix_from_mtx(file_path)
-   # is_symmetric_and_positive_definite(A)
-#end
+for file_path in matrices_files
+    if file_path != "C:/Users/david/Desktop/Matrici\\Flan_1565.mtx" 
+        if file_path != "C:/Users/david/Desktop/Matrici\\StocF-1465.mtx"   
+            println("Processando matrice: $file_path")
+            A = load_matrix_from_mtx(file_path)
+            t, mem, err = is_symmetric_and_positive_definite(A)
 
+
+            println("Tempo: $(round(t*1000, digits=2)) ms")
+            println("Memoria: $(mem ÷ 1024) KB")
+            println("Errore relativo: $err")
+            println("##################################")
+        end
+    end
+end
 ###############################################################################
 #=
 function chol(A)
