@@ -39,20 +39,8 @@ function is_symmetric_and_positive_definite(A::SparseMatrixCSC{Float64, Int})
     end
 end
 
-
-
-# 👉 Inserisci qui il percorso alla matrice .mtx
+#Inserisci qui il percorso alla matrice .mtx
 directory_path = "C:/Users/david/Desktop/Matrici"
-
-#=
-#A = load_matrix_from_mtx(file_path)
-#t, mem, err = is_symmetric_and_positive_definite(A)
-
-println("Tempo: $(round(t*1000, digits=2)) ms")
-println("Memoria: $(mem ÷ 1024) KB")
-println("Errore relativo: $err")
-println("##################################")
-=#
 
 # Ottieni la lista di tutti i file .mtx nella directory
 matrices_files = glob("*.mtx", directory_path)
@@ -73,33 +61,3 @@ for file_path in matrices_files
         end
     end
 end
-###############################################################################
-#=
-function chol(A)
-    n = size(A)[1] # note I didn't check it is square here
-    lower = zeros(n,n)
-
-    for i in 1:n
-        for j in 1:i
-            sum1 = 0;
-            # summation for diagonals
-            if (j == i)
-                for k in 1:j
-                    sum1 += (lower[j,k])^2
-                end#for
-                lower[j,j] = sqrt(matrix[j,j] - sum1)
-            else 
-                # Evaluating L(i, j)
-                # using L(j, j)
-                for k in 1:j
-                    sum1 += (lower[i,k] * lower[j,k]);
-                end#for
-                if(lower[j,j] > 0)
-                    lower[i,j] = (matrix[i,j] - sum1) /lower[j,j]
-                end#if
-            end#if else
-        end#for
-    end#for
-    lower
-end
-=#
