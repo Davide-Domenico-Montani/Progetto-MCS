@@ -47,8 +47,7 @@ matrices_files = glob("*.mtx", directory_path)
 
 # Cicla su ogni file e processa
 for file_path in matrices_files
-    if file_path != "C:/Users/david/Desktop/Matrici\\Flan_1565.mtx" 
-        if file_path != "C:/Users/david/Desktop/Matrici\\StocF-1465.mtx"   
+    if file_path == "C:/Users/david/Desktop/Matrici\\G3_circuit.mtx" 
             println("Processando matrice: $file_path")
             A = load_matrix_from_mtx(file_path)
             t, mem, err = is_symmetric_and_positive_definite(A)
@@ -58,6 +57,5 @@ for file_path in matrices_files
             println("Memoria: $(mem ÷ 1024) KB")
             println("Errore relativo: $err")
             println("##################################")
-        end
     end
 end
