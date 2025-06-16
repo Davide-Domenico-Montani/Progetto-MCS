@@ -1,6 +1,6 @@
 import numpy as np
 
-# Struttura di supporto per la DCT (simile a un oggetto mutabile)
+# Struttura di supporto per la DCT 
 class DCTSupport:
     def __init__(self, N):
         self.sqrt_N = np.sqrt(N)
@@ -10,7 +10,7 @@ class DCTSupport:
 
 def dct(v, support=None):
     """
-    Esegue la Discrete Cosine Transform (DCT) sul vettore v.
+    Esegue la DCT sul vettore v.
     Se viene passato un oggetto support, vengono riutilizzati i parametri precalcolati e il buffer.
     """
     N = len(v)
@@ -40,7 +40,7 @@ def dct(v, support=None):
 
 def dct2(matrix):
     """
-    Esegue la Discrete Cosine Transform 2D su una matrice (N x M).
+    Esegue la Discrete Cosine Transform 2D su una matrice (N x N).
     Applica la DCT sulle righe, poi sulle colonne.
     """
     matrix = np.asarray(matrix, dtype=np.float64)

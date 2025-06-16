@@ -9,7 +9,7 @@ def dct2_fast(x):
     return dct(dct(x.T, norm='ortho').T, norm='ortho')
 
 # Dimensioni da testare
-N_values = [128, 256, 512]
+N_values = [256, 512, 1024]
 time_naive = []
 time_fast = []
 
