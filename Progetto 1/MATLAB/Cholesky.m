@@ -57,15 +57,13 @@ end
 
 
 function [elapsed_time, mem_used, rel_error] = solve_system(A)
-   
-    A = sparse((A + A') / 2);  % Forza simmetria e mantiene sparsa
-    
+       
     n = size(A, 1);
     xe = ones(n, 1);
     b = A * xe;
 
     vars_before = whos;
-
+    tic;
     try
      [R, p] = chol(A);  % Salva il risultato della fattorizzazione di Cholesky in R
 
@@ -80,14 +78,14 @@ function [elapsed_time, mem_used, rel_error] = solve_system(A)
         clear A
     else
         % Se la matrice non è positiva
-        disp('❌ La matrice non è definita positiva.');
+        disp('La matrice non è definita positiva.');
         elapsed_time = 0;
         mem_used = 0;
         rel_error = 0;
         clear A
     end
     catch ME %in caso di errore riposta il messaggio.
-        fprintf('❌ Errore: %s\n', ME.message);
+        fprintf('Errore: %s\n', ME.message);
         elapsed_time = 0;
         mem_used = 0;
         rel_error = 0;
